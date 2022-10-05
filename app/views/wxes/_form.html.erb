@@ -1,0 +1,42 @@
+<%= form_with(model: wx) do |form| %>
+  <% if wx.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(wx.errors.count, "error") %> prohibited this wx from being saved:</h2>
+
+      <ul>
+        <% wx.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :street, style: "display: block" %>
+    <%= form.text_field :street %>
+  </div>
+
+  <div>
+    <%= form.label :city, style: "display: block" %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div>
+    <%= form.label :state_or_province, style: "display: block" %>
+    <%= form.text_field :state_or_province %>
+  </div>
+
+  <div>
+    <%= form.label :postal_code, style: "display: block" %>
+    <%= form.text_field :postal_code %>
+  </div>
+
+  <div>
+    <%= form.label :country, style: "display: block" %>
+    <%= form.text_field :country %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

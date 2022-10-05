@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @wx %>
+
+<div>
+  <%= link_to "Edit this wx", edit_wx_path(@wx) %> |
+  <%= link_to "Back to wxes", wxes_path %>
+
+  <%= button_to "Destroy this wx", @wx, method: :delete %>
+</div>
