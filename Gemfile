@@ -69,7 +69,12 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem 'rspec-rails', '>= 5.1.2'
 end
 
 gem "geocoder", "~>1.8.1"
 gem 'httparty', '~> 0.18.1'
+gem 'bootstrap', '~> 5.2.1'
+
+
+

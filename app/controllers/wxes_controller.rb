@@ -8,6 +8,8 @@ class WxesController < ApplicationController
 
   # GET /wxes/1 or /wxes/1.json
   def show
+    address = "#{@wx.street} #{@wx.city}, #{@wx.state_or_province} #{@wx.postal_code} #{@wx.country}"
+    @weather = @wx.get_weather(postal_code: @wx.postal_code, address: address)
   end
 
   # GET /wxes/new
@@ -25,7 +27,8 @@ class WxesController < ApplicationController
     
     address = "#{wx_params[:street]} #{wx_params[:city]}, #{wx_params[:state_or_province]} #{wx_params[:postal_code]} #{wx_params[:country]}"
 
-    @wx.set_location(address: address)
+    #this will set and fetch weather from cache
+    @wx.get_weather(postal_code: wx_params[:postal_code], address: address)
 
     respond_to do |format|
       if @wx.save

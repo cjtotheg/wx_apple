@@ -3,6 +3,23 @@
 <%= render @wx %>
 
 <div>
+  <h2>The weather at postal code: <%= @wx.postal_code %></h2>
+  <% if @weather == false %>
+    Sorry, something went wrong. We can't show the weather there now. Please contact support if the problem persists, or take a look at our help documentation <a href="https://www.google.com">here</a>.
+  <% else %>
+    <div>
+      <% @weather["properties"]["periods"].each do |period| %>
+        <div>
+        <img src="<%= period["icon"] %>">
+        <%= period["name"] %> : <%= period["shortForecast"] %> <%= period["temperature"] %> <%= period["temperatureUnit"] %> wind: <%= period["windSpeed"] %> <%= period["windDirection"] %><br>
+        <%= period["detailedForecast"] %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<div>
   <%= link_to "Edit this wx", edit_wx_path(@wx) %> |
   <%= link_to "Back to wxes", wxes_path %>
 
