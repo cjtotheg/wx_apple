@@ -1,21 +1,24 @@
-<p style="color: green"><%= notice %></p>
 
-<%= render @wx %>
-
-<div>
+<div class="container">
   <h2>The weather at postal code: <%= @wx.postal_code %></h2>
   <% if @weather == false %>
     Sorry, something went wrong. We can't show the weather there now. Please contact support if the problem persists, or take a look at our help documentation <a href="https://www.google.com">here</a>.
   <% else %>
-    <div>
-      <% @weather["properties"]["periods"].each do |period| %>
-        <div>
-        <img src="<%= period["icon"] %>">
-        <%= period["name"] %> : <%= period["shortForecast"] %> <%= period["temperature"] %> <%= period["temperatureUnit"] %> wind: <%= period["windSpeed"] %> <%= period["windDirection"] %><br>
-        <%= period["detailedForecast"] %>
-        </div>
-      <% end %>
+    
+    <div class="container">
+      <div class="row row-cols-5">
+        <% @weather["properties"]["periods"].each_with_index do |period, index| %>
+          <div class="col">
+            <img src="<%= period["icon"] %>">
+            <br>
+            <b><%= period["name"] %></b> 
+            <br>
+            <%= period["detailedForecast"] %>
+          </div>
+        <% end %>
+      </div>
     </div>
+
   <% end %>
 </div>
 
