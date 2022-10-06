@@ -28,8 +28,9 @@ https://whispering-reaches-58521.herokuapp.com/
 
 * Gems needed:
 
-   gem "geocoder", "~>1.8.1"
-   gem "httparty", "~> 0.18.1"
+   geocoder - Used for getting coordinates based on an address
+
+   httparty - Used to interact with the Weather.gov API to pull the weather.
 
 
 Discussion:
