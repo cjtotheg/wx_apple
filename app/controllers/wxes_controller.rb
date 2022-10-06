@@ -3,13 +3,16 @@ class WxesController < ApplicationController
 
   # GET /wxes or /wxes.json
   def index
-    @wxes = Wx.all
+    @wx = Wx.new
   end
 
   # GET /wxes/1 or /wxes/1.json
   def show
     address = "#{@wx.street} #{@wx.city}, #{@wx.state_or_province} #{@wx.postal_code} #{@wx.country}"
     @weather = @wx.get_weather(postal_code: @wx.postal_code, address: address)
+    if @weather.class == Hash && @weather.include?("properties") == false
+      @weather = false
+    end
   end
 
   # GET /wxes/new
@@ -25,18 +28,29 @@ class WxesController < ApplicationController
   def create
     @wx = Wx.new(wx_params)
     
+    #check params for minimum...
+    valid_address = true
+    if wx_params[:city] == "" ||
+       wx_params[:state_or_province] == "" ||
+       wx_params[:postal_code] == ""
+      valid_address = false
+    end
+
     address = "#{wx_params[:street]} #{wx_params[:city]}, #{wx_params[:state_or_province]} #{wx_params[:postal_code]} #{wx_params[:country]}"
 
     #this will set and fetch weather from cache
-    @wx.get_weather(postal_code: wx_params[:postal_code], address: address)
+    if valid_address == true
+      @wx.get_weather(postal_code: wx_params[:postal_code], address: address)
+    end
 
     respond_to do |format|
-      if @wx.save
-        format.html { redirect_to wx_url(@wx), notice: "Wx was successfully created." }
-        format.json { render :show, status: :created, location: @wx }
+      if valid_address == true 
+        save_result = @wx.save
+        if save_result == true
+          format.html { redirect_to wx_url(@wx), notice: "Wx was successfully created." }
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @wx.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -1,9 +1,13 @@
-<h1>New wx</h1>
+<div class="container">
 
-<%= render "form", wx: @wx %>
+  <div class="row">
+    <div class="col">
+      Instructions:<br>
+      Enter an address, get the weather in that location.
+    </div>
+    <div class="col">
+      <%= render "form", wx: @wx %>
+    </div>
+  </div>
 
-<br>
-
-<div>
-  <%= link_to "Back to wxes", wxes_path %>
 </div>

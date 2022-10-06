@@ -6,6 +6,15 @@
   <% else %>
     
     <div class="container">
+      <div class="row">
+        <div class="col">
+          <% if @weather.has_key?(:cached_time) && (Time.now.to_i - @weather[:cached_time]) > 5 %>
+            <p class="text-danger">Results from cache created <%= Time.now.to_i - @weather[:cached_time] %> seconds ago. Will expire in 30 minutes.</p>
+          <% else %>
+            <p class="text-danger">Fresh results pulled from API.</p>
+          <% end %>
+        </div>
+      </div>
       <div class="row row-cols-5">
         <% @weather["properties"]["periods"].each_with_index do |period, index| %>
           <div class="col">
@@ -22,9 +31,3 @@
   <% end %>
 </div>
 
-<div>
-  <%= link_to "Edit this wx", edit_wx_path(@wx) %> |
-  <%= link_to "Back to wxes", wxes_path %>
-
-  <%= button_to "Destroy this wx", @wx, method: :delete %>
-</div>

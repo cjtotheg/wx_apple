@@ -11,23 +11,25 @@
     </div>
   <% end %>
 
+  <p>Fields in red are required.</p>
+
   <div>
     <%= form.label :street, style: "display: block" %>
     <%= form.text_field :street %>
   </div>
 
   <div>
-    <%= form.label :city, style: "display: block" %>
+    <%= form.label :city, style: "display: block", class: "text-danger"  %>
     <%= form.text_field :city %>
   </div>
 
   <div>
-    <%= form.label :state_or_province, style: "display: block" %>
+    <%= form.label :state_or_province, style: "display: block", class: "text-danger" %>
     <%= form.text_field :state_or_province %>
   </div>
 
   <div>
-    <%= form.label :postal_code, style: "display: block" %>
+    <%= form.label :postal_code, style: "display: block", class: "text-danger"%>
     <%= form.text_field :postal_code %>
   </div>
 
@@ -35,8 +37,8 @@
     <%= form.label :country, style: "display: block" %>
     <%= form.text_field :country %>
   </div>
-
+  <br>
   <div>
-    <%= form.submit %>
+    <input type="submit" name="commit" value="Get Weather" data-disable-with="Get Weather" /> 
   </div>
 <% end %>

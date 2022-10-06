@@ -1,14 +1,13 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  
+  <div class="row">
+    <div class="col">
+      Instructions:<br>
+      Enter an address, get the weather in that location.
+    </div>
+    <div class="col">
+      <%= render "form", wx: @wx %>
+    </div>
+  </div>
 
-<h1>Wxes</h1>
-
-<div id="wxes">
-  <% @wxes.each do |wx| %>
-    <%= render wx %>
-    <p>
-      <%= link_to "Show this wx", wx %>
-    </p>
-  <% end %>
 </div>
-
-<%= link_to "New wx", new_wx_path %>

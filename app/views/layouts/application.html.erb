@@ -10,7 +10,17 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="bg-light">
+    <div class="container-fluid bg-secondary">
+      <div class="row">
+        <div class="col">
+          <h1 class="text-light"><a class="text-light text-decoration-none" href="/">WxApple</a></h1>
+        </div>
+        <div class="col text-end">
+          <span class="text-light">Demo by <a class="text-light" href="mailto:sbgrace@pm.me">Clay Givens</a> <br> <a class="text-light" target="github" href="https://github.com/cjtotheg/wx_apple">View Code on Github</a> </span>
+        </div>
+      </div>
+    </div>
     <%= yield %>
   </body>
 </html>

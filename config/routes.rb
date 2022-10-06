@@ -1,4 +1,4 @@
 Rails.application.routes.draw do
-  resources :wxes
-  root "wxes#new"
+  root 'wxes#index'
+  resources 'wxes'
 end
